@@ -2,23 +2,22 @@ import sys
 import warnings
 import os
 from PySide6.QtWidgets import QApplication
-from PySide6.QtCore import Qt
 from ui.main_window import MainWindow
+from config import config
 
 def main():
     # Suppress specific warnings
     warnings.filterwarnings("ignore", category=UserWarning, module="PIL.Image")
     
-    # Set image allocation limit (for large images)
-    os.environ['QT_IMAGEIO_MAXALLOC'] = '512'  # 512 MB limit
+    # Set image allocation limit from config
+    max_alloc = config.get_int('MAX_IMAGE_SIZE_MB', 512)
+    os.environ['QT_IMAGEIO_MAXALLOC'] = str(max_alloc)
     
     app = QApplication(sys.argv)
     app.setApplicationName("File Similarity Pro")
     app.setOrganizationName("FileSimilarityPro")
     
-    # High DPI scaling is automatic in Qt6, no need to set attributes
-    # The deprecated attributes are only needed in Qt5
-    
+    # Create and show main window
     window = MainWindow()
     window.show()
     

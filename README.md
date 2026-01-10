@@ -1,186 +1,209 @@
-# 🔍 File Similarity Pro - Fast Duplicate Finder
+# File Similarity Pro - Fast Duplicate Finder
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
-[![PySide6](https://img.shields.io/badge/PySide6-6.0%2B-green.svg)](https://pypi.org/project/PySide6/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://raw.githubusercontent.com/yasserbdj96/file-similarity-pro/main/LICENSE)
+A powerful, feature-rich desktop application for finding and managing duplicate files with advanced image similarity detection, real-time scanning, and an intuitive dark/light theme interface.
 
-A powerful, lightning-fast desktop application for finding and managing duplicate files with advanced similarity detection, beautiful UI, and real-time progress updates.
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![PySide6](https://img.shields.io/badge/PySide6-6.5+-green.svg)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 ![File Similarity Pro Screenshot](https://raw.githubusercontent.com/yasserbdj96/file-similarity-pro/main/screenshots/screenshot.png)
 
 ## ✨ Features
 
-### Core Functionality
-- **⚡ Lightning Fast Scanning**: Multi-threaded architecture with parallel hash computation
-- **🎯 Exact Duplicate Detection**: SHA-256 hashing for 100% accurate duplicate identification
-- **🖼️ Visual Similarity Detection**: Perceptual hashing for finding similar but not identical images
-- **📊 Real-time Progress**: See duplicate groups as they're discovered during scanning
-- **🎨 Beautiful UI**: Modern interface with dark/light theme support
-- **🔍 Advanced Filtering**: Filter results by file type, similarity percentage, size, and name
+### 🔍 Advanced Duplicate Detection
+- **Exact Duplicates**: SHA-256 hash-based detection for 100% accuracy
+- **Similar Images**: Perceptual hashing to find visually similar images
+- **Smart Filtering**: Filter by file type, similarity percentage, size, and search terms
+- **Real-time Results**: See duplicate groups as they're discovered during scanning
 
-### Smart Features
-- **🚫 Pattern-Based Exclusions**: Ignore system files, temporary folders, and custom patterns
-- **📏 Size-Based Filtering**: Focus on duplicates above a minimum file size
-- **🖼️ Image Preview**: Side-by-side comparison of duplicate images
-- **📝 Text Preview**: Compare text files with syntax-aware display
-- **💾 Wasted Space Calculation**: See exactly how much disk space you can recover
-- **🗑️ Safe Deletion**: Select and delete duplicates with confirmation dialogs
-- **⏸️ Cancellable Scans**: Stop long-running scans at any time
+### 🖼️ Enhanced Preview System
+- **Image Preview**: Side-by-side comparison with image details and dimensions
+- **Text/Code Preview**: Syntax-highlighted code comparison with line numbers
+  - Supports Python, JavaScript, JSON, HTML, CSS, and more
+  - Side-by-side diff view for easy comparison
+- **Generic File Preview**: Detailed file information table
 
-### User Experience
-- **🎨 Theme Toggle**: Switch between light and dark modes
-- **💾 Persistent Settings**: Your preferences are saved between sessions
-- **📱 Responsive Design**: Works great on any screen size
-- **🔄 Live Updates**: See groups appear as they're discovered
-- **📈 Detailed Statistics**: Track files scanned, duplicates found, and space savings
+### ⚡ Performance Optimizations
+- **Multi-threaded Scanning**: Parallel processing for faster results
+- **Quick Hash**: Fast initial filtering using file size + partial content
+- **Batch Processing**: Configurable batch sizes for optimal memory usage
+- **Progressive Display**: Results appear immediately as groups are found
 
-## 🚀 Quick Start
+### 🎨 Modern User Interface
+- **Dark/Light Theme**: Toggle between themes with persistent settings
+- **Auto-scroll**: Automatically follows scan progress
+- **Color-coded Groups**: Easy visual identification of duplicate groups
+- **Responsive Layout**: Adapts to different screen sizes
 
-### Prerequisites
+### 🛠️ Customizable Settings
+- **Ignore Patterns**: Exclude specific files/folders using wildcard patterns
+- **Performance Tuning**: Adjust worker threads and batch sizes
+- **UI Preferences**: Configure preview sizes, fonts, and auto-scroll behavior
+- **Scan Options**: Set minimum file size and similarity thresholds
 
-```bash
-Python 3.8 or higher
-```
+### 📊 Smart Features
+- **Wasted Space Calculation**: See how much storage you can reclaim
+- **CSV Export**: Export results for further analysis
+- **Batch Deletion**: Select and delete multiple files at once
+- **Recent Paths**: Quick access to previously scanned folders
 
-### Installation
+## 📋 Requirements
+
+- Python 3.8 or higher
+- PySide6 >= 6.5.0
+- Pillow >= 10.0.0
+- imagehash >= 4.3.1
+
+## 🚀 Installation
 
 1. **Clone the repository**
-```bash
-git clone https://github.com/yasserbdj96/file-similarity-pro.git
-cd file-similarity-pro
-```
+   ```bash
+   git clone https://github.com/yasserbdj96/file-similarity-pro.git
+   cd file-similarity-pro
+   ```
 
 2. **Install dependencies**
-```bash
-pip install -r requirements.txt
-```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 3. **Run the application**
-```bash
-python main.py
-```
+   ```bash
+   python main.py
+   ```
 
-## 📦 Dependencies
-
-```
-PySide6>=6.0.0          # Qt for Python GUI framework
-Pillow>=9.0.0           # Image processing
-imagehash>=4.3.0        # Perceptual image hashing
-opencv-python>=4.5.0    # Advanced image comparison (optional)
-numpy>=1.21.0           # Numerical operations
-```
-
-### Optional Dependencies
-
-For enhanced image comparison features:
-```bash
-pip install scikit-image  # For SSIM comparison
-```
-
-## 📖 Usage Guide
-
-### Basic Workflow
-
-1. **Select a Folder**
-   - Click "Browse" or paste a folder path
-   - The app will scan all subdirectories recursively
-
-2. **Configure Filters** (Optional)
-   - Set minimum file size to ignore small files
-   - Configure ignore patterns for system files
-   - Adjust similarity threshold for image matching
-
-3. **Start Scanning**
-   - Click "Scan for Duplicates"
-   - Watch as groups appear in real-time
-   - Cancel anytime if needed
-
-4. **Review Results**
-   - Use filters to narrow down results
-   - Search for specific filenames or paths
-   - Double-click any row to preview the group
-
-5. **Take Action**
-   - Preview groups to compare files side-by-side
-   - Select files you want to keep
-   - Delete unwanted duplicates safely
-
-### Advanced Features
-
-#### Ignore Patterns
-
-Configure patterns to skip certain files or folders:
-
-```
-*.tmp              # Ignore all .tmp files
-*.cache            # Ignore cache files
-.git/*             # Ignore .git directories
-__pycache__/*      # Ignore Python cache
-node_modules/*     # Ignore Node.js modules
-*.log              # Ignore log files
-```
-
-#### Filter Options
-
-- **File Type**: Focus on images, text files, or other file types
-- **Min Similarity**: Adjust threshold for similar (not exact) matches
-- **Min Size**: Ignore files below a certain size
-- **Search**: Filter by filename or path keywords
-
-## 🏗️ Project Structure
+## 📁 Project Structure
 
 ```
 file-similarity-pro/
-│
 ├── main.py                 # Application entry point
-├── requirements.txt        # Python dependencies
-├── README.md              # This file
-│
-├── core/                  # Core functionality
-│   ├── __init__.py
-│   ├── scanner.py         # File scanning and duplicate detection
-│   ├── file_compare.py    # File comparison algorithms
-│   └── image_compare.py   # Image similarity detection
-│
-├── ui/                    # User interface
-│   ├── __init__.py
+├── config.py              # Configuration management with .env support
+├── requirements.txt       # Python dependencies
+├── core/
+│   ├── scanner.py         # File scanning and duplicate detection engine
+│   ├── file_compare.py    # Hash-based file comparison
+│   └── image_compare.py   # Perceptual image hashing
+├── ui/
 │   ├── main_window.py     # Main application window
-│   └── preview_window.py  # File preview and comparison
-│
-└── utils/                 # Utilities
-    ├── __init__.py
-    └── worker.py          # Background worker thread
+│   └── preview_window.py  # Enhanced preview with syntax highlighting
+└── utils/
+    └── worker.py          # Background scanning worker thread
 ```
 
-## 🔧 How It Works
+## 🎯 Usage
 
-### Multi-Stage Detection Pipeline
+### Basic Workflow
 
-1. **Size Grouping** (O(n))
-   - Groups files by size instantly
-   - Eliminates most non-duplicates immediately
+1. **Select Folder**
+   - Click "Browse" or paste a folder path
+   - Recent paths are auto-completed
 
-2. **Quick Hashing** (Parallel)
-   - Computes fast hash of first 8KB + file size
-   - Uses thread pool for parallel processing
-   - Groups potential duplicates
+2. **Configure Settings** (Optional)
+   - Click "⚙️ Settings" to customize:
+     - Ignore patterns
+     - Minimum file size
+     - Performance options
+     - UI preferences
 
-3. **Full Hash Verification**
-   - SHA-256 hash of entire file
-   - Confirms exact duplicates with 100% accuracy
+3. **Start Scan**
+   - Click "🔍 Scan" to begin
+   - Watch real-time progress and results
+   - Stop anytime with "⏹ Stop"
 
-4. **Perceptual Image Analysis** (Optional)
-   - Uses pHash for visual similarity
-   - Detects resized, compressed, or slightly modified images
-   - Configurable similarity threshold
+4. **Review Results**
+   - Filter by type, similarity, size, or search term
+   - Double-click any row to preview files
+   - Select rows and click "Preview" for side-by-side comparison
 
-### Performance Optimizations
+5. **Manage Duplicates**
+   - Check files you want to delete in the preview window
+   - Click "🗑️ Delete Selected" to remove files
+   - Export results to CSV for record-keeping
 
-- **Parallel Processing**: Multi-threaded hash computation
-- **Early Termination**: Skip unnecessary comparisons
-- **Memory Efficiency**: Streaming file reads, no full file loads
-- **Smart Caching**: Reuse computed hashes within groups
-- **Batch Processing**: Group operations for reduced overhead
+### Filter Options
+
+- **Type**: Filter by file category (Images, Documents, Videos, etc.)
+- **Min Similarity**: Show only groups above a similarity threshold (50-100%)
+- **Min Size**: Filter by minimum file size in KB
+- **Search**: Find files by name or path
+
+### Default Ignore Patterns
+
+The application automatically ignores common system and cache files:
+- `*.tmp`, `*.temp`, `*.cache`, `*.log`
+- `.git/*`, `.svn/*`, `__pycache__/*`, `*.pyc`
+- `node_modules/*`, `.DS_Store`, `Thumbs.db`
+- `$RECYCLE.BIN/*`
+
+## ⚙️ Configuration
+
+Settings are stored in `~/.file_similarity_pro/.env`
+
+### Key Settings
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| `MIN_FILE_SIZE` | 0 | Minimum file size in KB to scan |
+| `MAX_WORKERS` | 4 | Number of parallel worker threads |
+| `BATCH_SIZE` | 10 | Files processed per batch |
+| `ENABLE_IMAGE_SIMILARITY` | true | Enable perceptual image matching |
+| `DEFAULT_MIN_SIMILARITY` | 70 | Default similarity filter percentage |
+| `IMAGE_PREVIEW_SIZE` | 400 | Image preview dimension in pixels |
+| `TEXT_FONT_SIZE` | 10 | Code editor font size |
+| `DARK_MODE` | false | Enable dark theme by default |
+| `AUTO_SCROLL` | true | Auto-scroll during scan |
+
+## 🖼️ Screenshots
+
+### Main Window
+- Real-time duplicate detection with color-coded groups
+- Advanced filtering and search
+- Summary statistics showing groups, files, and recoverable space
+
+### Preview Window
+- **Images**: Side-by-side comparison with metadata
+- **Code/Text**: Syntax highlighting with line numbers
+- **All Files**: Detailed file information table
+
+## 🔧 Advanced Features
+
+### Perceptual Image Hashing
+Finds visually similar images even if they have different:
+- File formats (JPG vs PNG)
+- Resolutions
+- Compression levels
+- Minor edits or filters
+
+### Syntax Highlighting
+Supports multiple languages:
+- Python, JavaScript, Java, C/C++
+- HTML, CSS, XML, JSON
+- Markdown, CSV, Log files
+- And more...
+
+### Performance Tips
+
+1. **Adjust Worker Threads**: Increase `MAX_WORKERS` for faster scanning on multi-core systems
+2. **Batch Size**: Larger batches use more memory but can be faster
+3. **Disable Image Similarity**: For faster scans when you only need exact duplicates
+4. **Ignore Patterns**: Exclude unnecessary directories to speed up scanning
+
+## 🐛 Troubleshooting
+
+### Large Image Files
+If previews fail for large images:
+- Increase `MAX_IMAGE_SIZE_MB` in settings (default: 100MB)
+- The app automatically skips extremely large files to prevent crashes
+
+### Slow Scanning
+- Check ignore patterns to exclude unnecessary folders
+- Reduce `MAX_WORKERS` if system becomes unresponsive
+- Increase `MIN_FILE_SIZE` to skip small files
+
+### Memory Issues
+- Reduce `BATCH_SIZE` setting
+- Disable image similarity detection
+- Scan smaller directories at a time
 
 ## 🎨 Screenshots
 
@@ -198,63 +221,39 @@ file-similarity-pro/
 
 ## 🤝 Contributing
 
-Contributions are welcome! Here's how you can help:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-1. **Fork the repository**
-2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Commit your changes** (`git commit -m 'Add amazing feature'`)
-4. **Push to the branch** (`git push origin feature/amazing-feature`)
-5. **Open a Pull Request**
+### Development Setup
 
-## 🐛 Bug Reports
-
-Found a bug? Please open an issue with:
-- Detailed description of the problem
-- Steps to reproduce
-- Expected vs actual behavior
-- System information (OS, Python version)
-- Screenshots if applicable
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](https://raw.githubusercontent.com/yasserbdj96/file-similarity-pro/main/LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🙏 Acknowledgments
 
-- **PySide6** - Qt for Python framework
-- **Pillow** - Python Imaging Library
-- **imagehash** - Perceptual image hashing
-- **OpenCV** - Computer vision library
+- **PySide6**: Qt for Python framework
+- **Pillow**: Python Imaging Library
+- **imagehash**: Perceptual image hashing library
+
+## 📧 Contact
+
+For bug reports and feature requests, please open an issue on GitHub.
 
 ## 🔮 Roadmap
 
-### Version 2.0 (Planned)
-- [ ] Machine learning-based duplicate detection
-- [ ] Cloud storage integration (Google Drive, Dropbox)
-- [ ] Automated cleanup rules
-- [ ] Duplicate photo organizer mode
-- [ ] Command-line interface
-- [ ] Scheduled scans
-- [ ] Generate reports (PDF/HTML)
-
-### Future Ideas
-- [ ] Audio file similarity detection
-- [ ] Video duplicate detection
-- [ ] Network drive support
-- [ ] Plugin system for custom comparators
-- [ ] Mobile app companion
-
-## 📞 Contact
-
-- **Author**: Boudjada Yasser
-- **Email**: yasserbdj96@gmail.com
-- **GitHub**: [@yasserbdj96](https://github.com/yasserbdj96)
-- **Project Link**: [https://github.com/yasserbdj96/file-similarity-pro](https://github.com/yasserbdj96/file-similarity-pro)
-
-## ⭐ Star History
-
-If you find this project useful, please consider giving it a star! ⭐
+- [ ] Video similarity detection
+- [ ] Audio fingerprinting for duplicate music files
+- [ ] Cloud storage integration
+- [ ] Duplicate photo organizer with EXIF data
+- [ ] Machine learning-based similarity scoring
+- [ ] Portable executable builds for Windows/Mac/Linux
 
 ---
 
-**Made with ❤️ by developers who hate duplicate files**
+**Made with ❤️ by yasserbdj96**

@@ -14,7 +14,6 @@ class ScanWorker(QThread):
         self.ignored_patterns = ignored_patterns or []
         self.min_file_size = min_file_size * 1024  # Convert KB to bytes
         self._is_running = True
-        self._error_occurred = False
 
     def stop(self):
         """Stop the scanning process gracefully"""
@@ -29,7 +28,7 @@ class ScanWorker(QThread):
             self.status.emit("Scanning files...")
             self.progress.emit(0)
             
-            # Scan folder with cancellation support
+            # Scan folder
             files = scan_folder(
                 self.path, 
                 lambda: self._is_running, 
@@ -38,19 +37,19 @@ class ScanWorker(QThread):
             )
             
             if not self._is_running:
-                self.status.emit("Scan cancelled by user")
+                self.status.emit("Scan cancelled")
                 self.finished.emit([])
                 return
             
             if not files:
-                self.status.emit("No files found matching criteria")
+                self.status.emit("No files found")
                 self.finished.emit([])
                 return
             
-            self.status.emit(f"Found {len(files)} files. Analyzing duplicates...")
+            self.status.emit(f"Found {len(files)} files. Analyzing...")
             self.progress.emit(10)
             
-            # Find duplicates with progress updates
+            # Find duplicates
             results = find_duplicate_groups(
                 files, 
                 self.progress.emit, 
@@ -60,21 +59,20 @@ class ScanWorker(QThread):
             )
             
             if not self._is_running:
-                self.status.emit("Analysis cancelled by user")
+                self.status.emit("Analysis cancelled")
                 self.finished.emit([])
             else:
-                self.status.emit(f"Scan complete! Found {len(results)} duplicate groups")
+                self.status.emit(f"Complete! Found {len(results)} groups")
                 self.progress.emit(100)
                 self.finished.emit(results)
                 
         except Exception as e:
-            self._error_occurred = True
-            error_msg = f"Error during scan: {str(e)}"
+            error_msg = f"Error: {str(e)}"
             self.error.emit(error_msg)
-            self.status.emit("Scan failed - see error message")
+            self.status.emit("Scan failed")
             self.finished.emit([])
     
     def emit_group(self, group):
-        """Emit a newly found group immediately for real-time display"""
+        """Emit newly found group for real-time display"""
         if self._is_running:
             self.group_found.emit(group)
